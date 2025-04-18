@@ -5,6 +5,7 @@ import {NetworkTrafficGraph} from "@/components/NetworkTrafficGraph";
 import {ResourceMonitoring} from "@/components/ResourceMonitoring";
 import {ServerList} from "@/components/ServerList";
 import {useEffect, useState} from "react";
+import {DailyCPUUsage} from "@/components/DailyCPUUsage";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
@@ -18,9 +19,11 @@ export default function Home() {
       <AlertSummary />
       <ResourceMonitoring />
       <NetworkTrafficGraph />
+        <DailyCPUUsage/>
       <div className="md:col-span-2 lg:col-span-3">
         <ServerList />
       </div>
     </div>
   );
 }
+
