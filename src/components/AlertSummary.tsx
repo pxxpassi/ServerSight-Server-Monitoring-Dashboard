@@ -2,7 +2,7 @@
 
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {useEffect, useState} from "react";
-import {Cell, Pie, PieChart, ResponsiveContainer, Sector} from "recharts";
+import {Cell, Pie, PieChart, ResponsiveContainer, Sector, Tooltip} from "recharts";
 
 interface AlertCounts {
   critical: number;
@@ -29,6 +29,18 @@ const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, perc
       {`${(percent * 100).toFixed(0)}%`}
     </text>
   );
+};
+
+const CustomTooltip = ({active, payload}: any) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white border rounded p-2 shadow-md">
+        <p className="text-sm font-semibold">{payload[0].name}</p>
+        <p className="text-xs">Value: {payload[0].value}</p>
+      </div>
+    );
+  }
+  return null;
 };
 
 export const AlertSummary = () => {
@@ -70,6 +82,7 @@ export const AlertSummary = () => {
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
+              <Tooltip content={<CustomTooltip />} />
             </PieChart>
           </ResponsiveContainer>
         ) : (
