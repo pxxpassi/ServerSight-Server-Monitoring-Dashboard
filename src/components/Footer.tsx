@@ -6,6 +6,10 @@ export const Footer = () => {
       <p className="text-sm text-muted-foreground">
         Copyright {new Date().getFullYear()} ServerSight. All rights reserved.
       </p>
+      <p className="text-sm text-muted-foreground">
+        Made by Purvi Passi
+      </p>
     </footer>
   );
 };
+
