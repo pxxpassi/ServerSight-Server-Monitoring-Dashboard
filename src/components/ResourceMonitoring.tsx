@@ -37,6 +37,8 @@ const chartConfig = {
   app: {label: "App Usage", color: "hsl(var(--chart-4))"},
 };
 
+const formatPercentage = (value: number) => `${value}%`;
+
 export const ResourceMonitoring = () => {
   const [resourceUsageData, setResourceUsageData] = useState(mockResourceUsageData);
   const [isClient, setIsClient] = useState(false);
@@ -58,7 +60,7 @@ export const ResourceMonitoring = () => {
             <AreaChart data={resourceUsageData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="time" />
-              <YAxis />
+              <YAxis tickFormatter={formatPercentage} />
               <ChartTooltip content={<ChartTooltipContent />} />
               <Area type="monotone" dataKey="cpu" stroke={chartConfig.cpu.color} fill={chartConfig.cpu.color} />
               <Area type="monotone" dataKey="ram" stroke={chartConfig.ram.color} fill={chartConfig.ram.color} />
