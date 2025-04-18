@@ -2,7 +2,7 @@
 
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {useEffect, useState} from "react";
-import {Cell, Pie, PieChart, ResponsiveContainer} from "recharts";
+import {Cell, Pie, PieChart, ResponsiveContainer, Sector} from "recharts";
 
 interface AlertCounts {
   critical: number;
@@ -17,6 +17,19 @@ const mockAlertCounts: AlertCounts = {
 };
 
 const COLORS = ["hsl(var(--chart-2))", "hsl(var(--destructive))", "hsl(var(--chart-4))"];
+
+const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, percent, index}: any) => {
+  const RADIAN = Math.PI / 180;
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
 
 export const AlertSummary = () => {
   const [alertCounts, setAlertCounts] = useState(mockAlertCounts);
@@ -44,14 +57,14 @@ export const AlertSummary = () => {
           <ResponsiveContainer width="100%" height={200}>
             <PieChart>
               <Pie
-                dataKey="value"
-                isAnimationActive={false}
                 data={data}
                 cx="50%"
                 cy="50%"
+                labelLine={false}
+                label={renderCustomizedLabel}
                 outerRadius={80}
                 fill="#8884d8"
-                label
+                dataKey="value"
               >
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
