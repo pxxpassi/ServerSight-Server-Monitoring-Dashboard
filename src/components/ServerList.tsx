@@ -10,12 +10,15 @@ interface ServerInfo {
   cpuUsage: number;
   ramUsage: number;
   networkTraffic: number;
+  ipAddress: string;
+  provider: string;
+  createdAt: string;
 }
 
 const mockServerData: ServerInfo[] = [
-  {name: "Server A", status: "Active", cpuUsage: 60, ramUsage: 70, networkTraffic: 150},
-  {name: "Server B", status: "Inactive", cpuUsage: 30, ramUsage: 40, networkTraffic: 80},
-  {name: "Server C", status: "Active", cpuUsage: 80, ramUsage: 90, networkTraffic: 200},
+  {name: "Server A", status: "Active", cpuUsage: 60, ramUsage: 70, networkTraffic: 150, ipAddress: "192.168.1.100", provider: "AWS", createdAt: "2024-01-01"},
+  {name: "Server B", status: "Inactive", cpuUsage: 30, ramUsage: 40, networkTraffic: 80, ipAddress: "192.168.1.101", provider: "GCP", createdAt: "2024-01-05"},
+  {name: "Server C", status: "Active", cpuUsage: 80, ramUsage: 90, networkTraffic: 200, ipAddress: "192.168.1.102", provider: "Azure", createdAt: "2024-01-10"},
 ];
 
 export const ServerList = () => {
@@ -43,6 +46,9 @@ export const ServerList = () => {
                 <TableHead>CPU Usage</TableHead>
                 <TableHead>RAM Usage</TableHead>
                 <TableHead>Network Traffic (Mbps)</TableHead>
+                <TableHead>IP Address</TableHead>
+                <TableHead>Provider</TableHead>
+                <TableHead>Created At</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -53,6 +59,9 @@ export const ServerList = () => {
                   <TableCell>{server.cpuUsage}%</TableCell>
                   <TableCell>{server.ramUsage}%</TableCell>
                   <TableCell>{server.networkTraffic}</TableCell>
+                  <TableCell>{server.ipAddress}</TableCell>
+                  <TableCell>{server.provider}</TableCell>
+                  <TableCell>{server.createdAt}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -64,3 +73,4 @@ export const ServerList = () => {
     </Card>
   );
 };
+
