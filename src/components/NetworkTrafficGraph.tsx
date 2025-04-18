@@ -19,12 +19,18 @@ interface NetworkTrafficData {
 }
 
 const mockNetworkTrafficData: NetworkTrafficData[] = [
-  {time: "00:00", traffic: 100},
-  {time: "01:00", traffic: 120},
-  {time: "02:00", traffic: 150},
-  {time: "03:00", traffic: 130},
-  {time: "04:00", traffic: 160},
-  {time: "05:00", traffic: 180},
+  {time: "Jan", traffic: 100},
+  {time: "Feb", traffic: 120},
+  {time: "Mar", traffic: 150},
+  {time: "Apr", traffic: 130},
+  {time: "May", traffic: 160},
+  {time: "Jun", traffic: 180},
+  {time: "Jul", traffic: 100},
+  {time: "Aug", traffic: 120},
+  {time: "Sep", traffic: 150},
+  {time: "Oct", traffic: 130},
+  {time: "Nov", traffic: 160},
+  {time: "Dec", traffic: 180},
 ];
 
 const chartConfig = {
@@ -51,7 +57,7 @@ export const NetworkTrafficGraph = () => {
           <ChartContainer config={chartConfig} className="h-[200px]">
             <AreaChart data={networkTrafficData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="time" />
+              <XAxis dataKey="time" interval="preserveStartEnd"/>
               <YAxis />
               <ChartTooltip content={<ChartTooltipContent />} />
               <Area type="monotone" dataKey="traffic" stroke={chartConfig.traffic.color} fill={chartConfig.traffic.color} />
