@@ -2,7 +2,15 @@
 
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {useEffect, useState} from "react";
-import {Cell, Pie, PieChart, ResponsiveContainer, Sector, Tooltip} from "recharts";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Sector,
+  Tooltip,
+} from "recharts";
 
 interface AlertCounts {
   critical: number;
@@ -18,8 +26,8 @@ const mockAlertCounts: AlertCounts = {
 
 const COLORS = ["hsl(var(--chart-2))", "hsl(var(--destructive))", "hsl(var(--chart-4))"];
 
+const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, percent, index}: any) => {
-  const RADIAN = Math.PI / 180;
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
   const x = cx + radius * Math.cos(-midAngle * RADIAN);
   const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -64,27 +72,40 @@ export const AlertSummary = () => {
       <CardHeader>
         <CardTitle>Alert Summary</CardTitle>
       </CardHeader>
-      <CardContent className="flex justify-center items-center">
+      <CardContent className="flex flex-col items-center">
         {isClient ? (
-          <ResponsiveContainer width="100%" height={200}>
-            <PieChart>
-              <Pie
-                data={data}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={renderCustomizedLabel}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {data.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip content={<CustomTooltip />} />
-            </PieChart>
-          </ResponsiveContainer>
+          <>
+            <ResponsiveContainer width="100%" height={200}>
+              <PieChart>
+                <Pie
+                  data={data}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={renderCustomizedLabel}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="value"
+                >
+                  {data.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
+                  ))}
+                </Pie>
+                <Tooltip content={<CustomTooltip/>}/>
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="flex justify-center mt-4">
+              {data.map((entry, index) => (
+                <div key={`legend-${index}`} className="flex items-center mr-4">
+                  <div
+                    className="w-3 h-3 rounded-full mr-1"
+                    style={{backgroundColor: COLORS[index % COLORS.length]}}
+                  />
+                  <span className="text-sm">{entry.name}</span>
+                </div>
+              ))}
+            </div>
+          </>
         ) : (
           "Loading..."
         )}
