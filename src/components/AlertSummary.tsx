@@ -16,7 +16,7 @@ const mockAlertCounts: AlertCounts = {
   low: 25,
 };
 
-const COLORS = ["hsl(var(--destructive))", "hsl(var(--chart-4))", "hsl(var(--chart-2))"];
+const COLORS = ["hsl(var(--chart-2))", "hsl(var(--destructive))", "hsl(var(--chart-4))"];
 
 export const AlertSummary = () => {
   const [alertCounts, setAlertCounts] = useState(mockAlertCounts);
@@ -29,9 +29,9 @@ export const AlertSummary = () => {
   }, []);
 
   const data = [
+    {name: "Clear", value: alertCounts.low},
     {name: "Critical", value: alertCounts.critical},
-    {name: "Medium", value: alertCounts.medium},
-    {name: "Low", value: alertCounts.low},
+    {name: "Trouble", value: alertCounts.medium},
   ];
 
   return (
