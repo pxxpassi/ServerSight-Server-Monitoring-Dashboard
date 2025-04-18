@@ -63,13 +63,13 @@ export const NetworkTrafficGraph = () => {
   }, []);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Network Traffic</CardTitle>
+    <Card className="shadow-md">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg font-semibold">Network Traffic</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4">
         {isClient ? (
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={networkTrafficData} margin={{top: 10, right: 30, left: 0, bottom: 0}}>
               <defs>
                 <linearGradient id="trafficGradient" x1="0" y1="0" x2="0" y2="1">
@@ -78,8 +78,8 @@ export const NetworkTrafficGraph = () => {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey="time" tick={{fontSize: 12}}/>
-              <YAxis tick={{fontSize: 12}}/>
+              <XAxis dataKey="time" tick={{fontSize: 10}}/>
+              <YAxis tick={{fontSize: 10}}/>
               <Tooltip content={<CustomTooltip/>}/>
               <Area
                 type="monotone"
@@ -96,3 +96,4 @@ export const NetworkTrafficGraph = () => {
     </Card>
   );
 };
+

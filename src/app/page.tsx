@@ -15,16 +15,18 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="p-4">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <AlertSummary />
-      <ResourceMonitoring />
-      <NetworkTrafficGraph />
-        <DailyCPUUsage/>
-      <div className="md:col-span-2 lg:col-span-3">
-        <ServerList />
+    <div className="flex justify-center">
+      <div className="container max-w-7xl p-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <AlertSummary />
+          <ResourceMonitoring />
+          <NetworkTrafficGraph />
+          <DailyCPUUsage/>
+          <div className="md:col-span-2 lg:col-span-3">
+            <ServerList />
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   );
 }

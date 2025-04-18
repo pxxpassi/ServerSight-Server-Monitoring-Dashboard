@@ -68,14 +68,14 @@ export const AlertSummary = () => {
   ];
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Alert Summary</CardTitle>
+    <Card className="shadow-md">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg font-semibold">Alert Summary</CardTitle>
       </CardHeader>
-      <CardContent className="flex flex-col items-center">
+      <CardContent className="flex flex-col items-center justify-center">
         {isClient ? (
-          <>
-            <ResponsiveContainer width="100%" height={200}>
+          <div className="w-full">
+            <ResponsiveContainer width="100%" height={250}>
               <PieChart>
                 <Pie
                   data={data}
@@ -96,7 +96,7 @@ export const AlertSummary = () => {
             </ResponsiveContainer>
             <div className="flex justify-center mt-4">
               {data.map((entry, index) => (
-                <div key={`legend-${index}`} className="flex items-center mr-4">
+                <div key={`legend-${index}`} className="flex items-center mr-4 last:mr-0">
                   <div
                     className="w-3 h-3 rounded-full mr-1"
                     style={{backgroundColor: COLORS[index % COLORS.length]}}
@@ -105,7 +105,7 @@ export const AlertSummary = () => {
                 </div>
               ))}
             </div>
-          </>
+          </div>
         ) : (
           "Loading..."
         )}

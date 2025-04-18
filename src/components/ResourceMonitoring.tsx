@@ -50,17 +50,17 @@ export const ResourceMonitoring = () => {
   }, []);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Resource Monitoring</CardTitle>
+    <Card className="shadow-md">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg font-semibold">Resource Monitoring</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4">
         {isClient ? (
-          <ChartContainer config={chartConfig} className="h-[200px]">
+          <ChartContainer config={chartConfig} className="h-[250px]">
             <AreaChart data={resourceUsageData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="time" />
-              <YAxis tickFormatter={formatPercentage} />
+              <XAxis dataKey="time" style={{ fontSize: '0.75rem' }} />
+              <YAxis tickFormatter={formatPercentage} style={{ fontSize: '0.75rem' }}/>
               <ChartTooltip content={<ChartTooltipContent />} />
               <Area type="monotone" dataKey="cpu" name="CPU" stroke={chartConfig.cpu.color} fill={chartConfig.cpu.color} />
               <Area type="monotone" dataKey="ram" name="RAM" stroke={chartConfig.ram.color} fill={chartConfig.ram.color} />

@@ -1,4 +1,4 @@
-"use client";
+;"use client";
 
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {useEffect, useState} from "react";
@@ -82,71 +82,73 @@ export const ServerList = () => {
   };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Server List</CardTitle>
+    <Card className="shadow-md">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg font-semibold">Server List</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {isClient ? (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>CPU Usage</TableHead>
-                <TableHead>RAM Usage</TableHead>
-                <TableHead>Network Traffic (Mbps)</TableHead>
-                <TableHead>IP Address</TableHead>
-                <TableHead>Provider</TableHead>
-                <TableHead>Created At</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {serverData.map((server) => (
-                <TableRow key={server.name}>
-                  <TableCell>{server.name}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center gap-1">
-                      <Circle
-                        size={12}
-                        color={
-                          server.status === "Active"
-                            ? statusColors.Active
-                            : statusColors.Inactive
-                        }
-                        fill={
-                          server.status === "Active"
-                            ? statusColors.Active
-                            : statusColors.Inactive
-                        }
-                      />
-                      {server.status}
-                    </div>
-                  </TableCell>
-                  <TableCell>{server.cpuUsage}%</TableCell>
-                  <TableCell>{server.ramUsage}%</TableCell>
-                  <TableCell>{server.networkTraffic}</TableCell>
-                  <TableCell>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>{server.ipAddress}</TooltipTrigger>
-                        <TooltipContent>Server IP Address</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </TableCell>
-                  <TableCell>
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger>{server.provider}</TooltipTrigger>
-                        <TooltipContent>Server Provider</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </TableCell>
-                  <TableCell>{formatDate(server.createdAt)}</TableCell>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>CPU Usage</TableHead>
+                  <TableHead>RAM Usage</TableHead>
+                  <TableHead>Network Traffic (Mbps)</TableHead>
+                  <TableHead>IP Address</TableHead>
+                  <TableHead>Provider</TableHead>
+                  <TableHead>Created At</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {serverData.map((server) => (
+                  <TableRow key={server.name}>
+                    <TableCell>{server.name}</TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-1">
+                        <Circle
+                          size={12}
+                          color={
+                            server.status === "Active"
+                              ? statusColors.Active
+                              : statusColors.Inactive
+                          }
+                          fill={
+                            server.status === "Active"
+                              ? statusColors.Active
+                              : statusColors.Inactive
+                          }
+                        />
+                        {server.status}
+                      </div>
+                    </TableCell>
+                    <TableCell>{server.cpuUsage}%</TableCell>
+                    <TableCell>{server.ramUsage}%</TableCell>
+                    <TableCell>{server.networkTraffic}</TableCell>
+                    <TableCell>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>{server.ipAddress}</TooltipTrigger>
+                          <TooltipContent>Server IP Address</TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </TableCell>
+                    <TableCell>
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger>{server.provider}</TooltipTrigger>
+                          <TooltipContent>Server Provider</TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </TableCell>
+                    <TableCell>{formatDate(server.createdAt)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         ) : (
           "Loading..."
         )}

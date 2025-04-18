@@ -51,17 +51,17 @@ export const DailyCPUUsage = () => {
   }, []);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Daily CPU Usage</CardTitle>
+    <Card className="shadow-md">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg font-semibold">Daily CPU Usage</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-4">
         {isClient ? (
-          <ResponsiveContainer width="100%" height={200}>
+          <ResponsiveContainer width="100%" height={250}>
             <BarChart data={cpuUsageData} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
               <CartesianGrid strokeDasharray="3 3"/>
-              <XAxis dataKey="time"/>
-              <YAxis domain={[0, 100]} tickFormatter={(value) => `${value}%`}/>
+              <XAxis dataKey="time" style={{fontSize: '0.75rem'}}/>
+              <YAxis domain={[0, 100]} tickFormatter={(value) => `${value}%`} style={{fontSize: '0.75rem'}}/>
               <Tooltip content={<CustomTooltip/>}/>
               <Bar dataKey="usage" fill="hsl(var(--primary))"/>
             </BarChart>
