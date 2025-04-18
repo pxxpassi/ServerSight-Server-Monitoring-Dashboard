@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="flex flex-col min-h-screen">
         <header className="bg-secondary text-center p-4 mb-4">
-          <h1 className="text-2xl font-semibold">Server Monitoring Dashboard</h1>
+          <h1 className="text-2xl font-semibold">ServerSight Dashboard</h1>
         </header>
         <main className="flex-1">
           {children}
@@ -39,3 +39,4 @@ export default function RootLayout({
     </html>
   );
 }
+
