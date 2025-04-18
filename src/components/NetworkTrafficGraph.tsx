@@ -57,7 +57,7 @@ export const NetworkTrafficGraph = () => {
           <ChartContainer config={chartConfig} className="h-[200px]">
             <AreaChart data={networkTrafficData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="time" interval="preserveStartEnd"/>
+              <XAxis dataKey="time" />
               <YAxis />
               <ChartTooltip content={<ChartTooltipContent />} />
               <Area type="monotone" dataKey="traffic" stroke={chartConfig.traffic.color} fill={chartConfig.traffic.color} />
@@ -73,3 +73,4 @@ export const NetworkTrafficGraph = () => {
     </Card>
   );
 };
+
