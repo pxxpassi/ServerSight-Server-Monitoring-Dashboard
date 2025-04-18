@@ -62,10 +62,10 @@ export const ResourceMonitoring = () => {
               <XAxis dataKey="time" />
               <YAxis tickFormatter={formatPercentage} />
               <ChartTooltip content={<ChartTooltipContent />} />
-              <Area type="monotone" dataKey="cpu" stroke={chartConfig.cpu.color} fill={chartConfig.cpu.color} />
-              <Area type="monotone" dataKey="ram" stroke={chartConfig.ram.color} fill={chartConfig.ram.color} />
-              <Area type="monotone" dataKey="disk" stroke={chartConfig.disk.color} fill={chartConfig.disk.color} />
-              <Area type="monotone" dataKey="app" stroke={chartConfig.app.color} fill={chartConfig.app.color} />
+              <Area type="monotone" dataKey="cpu" name="CPU" stroke={chartConfig.cpu.color} fill={chartConfig.cpu.color} />
+              <Area type="monotone" dataKey="ram" name="RAM" stroke={chartConfig.ram.color} fill={chartConfig.ram.color} />
+              <Area type="monotone" dataKey="disk" name="Disk" stroke={chartConfig.disk.color} fill={chartConfig.disk.color} />
+              <Area type="monotone" dataKey="app" name="Application" stroke={chartConfig.app.color} fill={chartConfig.app.color} />
             </AreaChart>
             <ChartLegend>
               <ChartLegendContent />
